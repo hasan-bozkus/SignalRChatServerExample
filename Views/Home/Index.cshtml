@@ -2,8 +2,12 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+
 <html>
 <head>
+
     <script src="~/signalR&Jquery/signalr.min.js"></script>
     <script src="~/signalR&Jquery/jquery.min.js"></script>
     <script src="~/signalR&Jquery/bootstrap.min.js"></script>
@@ -25,14 +29,6 @@
                 });
                 $(this).addClass("active");
             });
-
-            // $("#btnGonder").click(() => {
-            //     var x = $(".message").clone();
-            //     x.removeClass("message");
-            //     x.find("h5")[1].innerHTML = ""; //Ahmet'i gösterir.
-            //     x.find("h5")[0].innerHTML = ""; //Sen'i gösterir.
-            //     $(".message").append(x);
-            // })
 
             $("#btnGirisYap").click(() => {
                 const nickName = $("#txtNickName").val();
@@ -92,8 +88,24 @@
                 });
                 $(".rooms").append(options);
             });
+
+            $("#btnOdalaraGir").click(() => {
+                let groupNames = [];
+                $(".rooms option:selected").map((i, e) => {
+                    groupNames.push(e.innerHTML);
+                });
+
+                connection.invoke("AddClientToGroup", groupNames);
+            });
+
+            $(".rooms").change(function () {
+                let groupName = $(this).val();
+                console.log(groupName[0]);
+                connection.invoke("GetClientToGroup", groupName[0]);
+            });
         });
     </script>
+
 
 
     <link rel="stylesheet" href="~/style/bootstrap.min.css" />
@@ -114,7 +126,7 @@
                     <select size="5" style="width:100%;" class="form-select disabled rooms" multiple>
                         <option selected value="-1">Odalar</option>
                     </select>
-                    <button type="button" class="btn btn-primary rightButton disabled">Seçili Odalara Gir</button>
+                    <button type="button" class="btn btn-primary rightButton disabled" id="btnOdalaraGir">Seçili Odalara Gir</button>
                     <!--Oda-->
                     <br /><br /><br />
                     <!--Clientlar-->
@@ -161,5 +173,6 @@
     </div>
 </body>
 </html>
+
 
 
