@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Home\Index.html" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\signalR&amp;Jquery\bootstrap.min.js" />
+    <None Include="wwwroot\signalR&amp;Jquery\jquery.min.js" />
+    <None Include="wwwroot\signalR&amp;Jquery\jquery.min.map" />
+    <None Include="wwwroot\signalR&amp;Jquery\signalr.min.js" />
+    <None Include="wwwroot\signalR&amp;Jquery\signalr.min.js.map" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+</Project>

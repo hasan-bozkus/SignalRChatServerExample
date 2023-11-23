@@ -1,0 +1,1269 @@
+/**
+
+ Author: Pro Chatrooms
+ Software: Avatar Chat
+ Url: http://www.prochatrooms.com
+ Copyright 2007-2010 All Rights Reserved
+
+ Avatar Chat and all of its source code/files are protected by Copyright Laws. 
+ The license for Avatar Chat permits you to install this software on a single domain only (.com, .co.uk, .org, .net, etc.). 
+ Each additional installation requires an additional software licence, please contact us for more information.
+ You may NOT remove the copyright information and credits for Avatar Chat unless you have been granted permission. 
+ Avatar Chat is NOT free software - For more details http://www.prochatrooms.com/software_licence.php
+
+**/
+
+
+/*
+
+CSS3 rounded corners
+not supported by all browsers
+
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+
+*/
+
+/* for background image (pt1) - pushes the page to the full capacity of the viewing area */
+
+html 
+{
+	height:100%;
+}
+
+body 
+{
+	height:100%;
+	margin:0; 
+	padding:0;
+}
+
+.error {
+border-color: #DF8F8F;
+background: #FFD7D7 url('../images/error.jpg') no-repeat 10px 8px;
+}
+
+.error, .warning, .success {
+padding: 8px 10px 10px 36px;
+margin: 10px 0;
+border: solid 1px;
+font-size: 11px;
+width: 229px;
+color: #333;
+}
+
+.success {
+border-color: #ACDBAD;
+background: #ECFAE3 url('../images/success.jpg') no-repeat 10px 8px;
+}
+
+.newsPaper {
+top: -4px;
+left: 9px;
+position: absolute;
+height: 548px;
+width: 773px;
+padding: 4px;
+visibility: hidden;
+z-index: 31001;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+.npbg {
+width: 672px;
+height: 779px;
+background: url('../images/npbg.png');
+}
+
+.npb1 {
+font-family: Trebuchet MS;
+font-size: 17px;
+font-weight: bold;
+color: rgb(54,54,54);
+text-decoration: none;
+position: absolute;
+background: url('newspaper/normal.png');
+width: 25px;
+height: 29px;
+padding-top: 6px;
+padding-left: 12px;
+}
+
+.npb2 {
+background: url('newspaper/select.png');
+width: 25px;
+height: 29px;
+padding-top: 6px;
+padding-left: 12px;
+}
+
+.npa {
+font-family: Trebuchet MS;
+font-size: 17px;
+font-weight: bold;
+color: rgb(54,54,54);
+text-decoration: none;
+position: absolute;
+}
+
+#announcement {
+width: 311px;
+height: 100px;
+position: absolute;
+z-index: 1;
+float: right;
+right: -14px;
+top: 80px;
+}
+
+
+/* for background image (pt2) - prepares the background image to full capacity of the viewing area */
+
+#bg 
+{
+	position:fixed; 
+	top:0; 
+	left:0; 
+	width:100%; 
+	height:100%;
+}
+
+/* for background image (pt3) - places the content ontop of the background image */
+
+#content 
+{
+	position:relative; 
+	z-index:1;
+}
+
+/* myMessage div */
+
+.myMessage 
+{ 
+	position:absolute; 
+}
+
+/* myAvatar div */
+
+.myAvatar 
+{ 
+	position:absolute; 
+	horizontal-align:middle;
+	text-align:center;
+}
+
+.question{background:url('../images/questbg.png');
+width:364px;
+height:458px;
+visibility:hidden;
+position:absolute;
+z-index:31001;
+top:45px;
+left:218px;}
+
+.questinfo a {
+font-size: 13px;
+font-weight: bold;
+color: #000;
+text-decoration: none;
+}
+
+
+.questerbutton{position:absolute;cursor:pointer;}
+.questionhidebutton{float:right;margin-top:-452px;margin-right:6px;position:relative;}
+.questioniframe{border:0px;width:380px;height:462px;margin-left:4px;margin-top:3px;}
+
+.back {
+width: 65px;
+height: 29px;
+margin-top: 181px;
+margin-right: 51px;
+background: url('../images/geri1.png');
+float: right;
+}
+
+.verify {
+width: 105px;
+height: 29px;
+margin-top: 164px;
+margin-left: 46px;
+background: url('../images/onayla1.png');
+float: left;
+}
+
+.cancel {
+width: 105px;
+height: 29px;
+margin-top: 164px;
+margin-right: 51px;
+background: url('../images/reddet.png');
+float: right;
+}
+
+.okup:hover {
+background-image: url('../images/okup.png');
+}
+
+.okright:hover {
+background-image: url('../images/okright.png');
+}
+
+.okleft:hover {
+background-image: url('../images/okleft.png');
+}
+
+.okdown:hover {
+background-image: url('../images/okdown.png');
+}
+
+.okup {
+position: absolute;
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+.okright {
+position: absolute;
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+.okleft {
+position: absolute;
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+.okdown {
+position: absolute;
+cursor: pointer;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+
+/* general body settings */
+
+.body 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 11px;
+	font-style: normal;
+	overflow: hidden;
+}
+
+/* chat screen */
+
+.chatscreen 
+{
+	width:800px; 
+	height:560px; 
+	border: 0px solid #84B2DE; 
+	position:absolute;
+}
+
+/* control panel */
+
+.controlPanel 
+{
+	bottom:0px; 
+	left:5px; 
+	height:45px;
+	border: 0px solid #101111; 
+	position:absolute;
+	background-image: url('../images/chatboxbs.png');
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* chatbox window */
+
+.chatbox {
+width: 300px;
+height: 150px;
+bottom: 52px;
+left: 5px;
+border: 2px solid #AD4600;
+padding: 4px;
+overflow: scroll;
+overflow-x: hidden;
+position: absolute;
+word-wrap: break-word;
+visibility: hidden;
+background: #fff9e0;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+font-family: Verdana,Arial;
+font-size: 12px;
+}
+
+/* chat options */
+
+.chatoptions {
+width: 304px;
+height: 14px;
+bottom: 268px;
+left: 5px;
+padding: 2px;
+border: 2px solid #AD4600;
+position: absolute;
+background: #fff9e0;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+text-align: right;
+}
+
+/* chat tab */
+
+.chattab 
+{
+	width:720px; 
+	height:20px; 
+	bottom:27px; 
+	left:1px; 
+	border: 0px solid #84B2DE; 
+	padding: 4px;
+	position:absolute;
+}
+
+/* private chat tabs */
+
+.privatetab {
+width: 70px;
+height: 20px;
+bottom: 0px;
+border: 1px solid #000000;
+padding: 4px;
+background: #fff9e0;
+cursor: pointer;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+/* private chat tabs (new message)*/
+
+.newprivatetab 
+{
+	width:70px; 
+	height:14px; 
+	bottom:0px; 
+	border: 1px solid #84B2DE; 
+	padding: 4px;
+	cursor: pointer;
+	background-color: white;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* private chatbox window */
+
+.pchatbox 
+{
+	width:300px; 
+	height:150px; 
+	bottom:50px; 
+	left:5px; 
+	border: 1px solid #84B2DE; 
+	padding: 4px;
+	overflow: scroll;
+	overflow-x: hidden;
+	position:absolute;
+	word-wrap: break-word;
+	visibility: visible;
+	background-image: url('../images/chatboxbg.png');
+}
+
+/* message bar */
+
+.messageBar {
+color: #000000;
+font-family: Tahoma;
+font-size: 11px;
+font-style: normal;
+text-decoration: none;
+height: 27px;
+width: 237px;
+bottom: 4px;
+left: 273px;
+border: none;
+background: none;
+position: absolute;
+outline: none!important;
+border: none!important;
+-moz-appearance: none;
+}
+
+/* user details */
+
+.userdetails {
+color: #000000;
+font-family: Tahoma;
+font-size: 11px;
+font-style: normal;
+text-decoration: none;
+height: 207px;
+width: 105px;
+visibility: hidden;
+position: absolute;
+vertical-align: middle;
+background-image: url('../images/kisi_karti.png');
+}
+
+/* user info */
+
+.userinfo 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: normal;
+	text-decoration: none;
+	cursor:pointer;
+	padding:8px;
+}
+
+/* send button */
+
+.sendButton {
+bottom: 5px;
+left: 517px;
+cursor: pointer;
+position: absolute;
+border: none;
+background-image: url('../images/qg10.png');
+width: 25px;
+height: 25px;
+}
+
+/* logout button */
+
+.logoutButton 
+{
+	height: 23px; 
+	width: 14px;
+	top: 508px;
+	left:767px;
+	padding: 4px; 
+	cursor: pointer; 
+	position:absolute;
+	border: 0px solid #84B2DE; 
+	background-image: url('../images/pm12.png');
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* play games button */
+
+.playgamesButton 
+{
+	height: 58px; 
+	width: 40px;
+	top: 5px;
+	left:687px;
+	padding: 0px; 
+	padding-left:10px;
+	cursor: pointer; 
+	position:absolute;
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* map button */
+
+.mapButton 
+{
+	height: 50px; 
+	width: 40px;
+	top: 5px;
+	left:627px;
+	padding: 4px; 
+	cursor: pointer; 
+	position:absolute;
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+
+/* avatar button */
+
+.avatarButton 
+{
+	height: 47px; 
+	width: 146px;
+	top: 0px;
+	left:1px; 
+	padding: 0px; 
+	padding-left:10px;
+	cursor: pointer; 
+	position:absolute;
+	border: 0px solid #84B2DE; 
+	background-image: url('../images/profil.png');
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* chatbox button */
+
+.chatboxButton 
+{
+	bottom: 3px;
+	left:11px; 
+	position:absolute;
+	height: 23px; 
+	width: 24px;
+	background-image: url('../images/chat.png');
+}
+
+/* block button */
+
+.blockButton 
+{
+	height: 24px; 
+	width: 24px;
+	bottom: 3px;
+	left: 166px; 
+	cursor: pointer; 
+	position:absolute;
+	background-image: url('../images/block.png');
+}
+
+/* credits button */
+
+.creditsButton 
+{
+	color: #000000;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: bolder;
+	text-decoration: none;
+	text-align: center;
+	height: 34px; 
+	width: 184px;
+	bottom: 426px;
+	left: -33px; 
+	position:absolute;
+	background-image: url('../images/credits.png');
+}
+
+/* love button */
+
+.loveButton {
+color: #000000;
+font-family: Verdana,Arial;
+font-size: 9px;
+font-style: normal;
+font-weight: bold;
+text-decoration: none;
+text-align: center;
+height: 24px;
+width: 24px;
+bottom: 3px;
+left: 683px;
+position: absolute;
+background-image: url('../images/heart.png');
+}
+
+/* thumbsup button */
+
+.likeButton 
+{
+	color: #000000;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 24px; 
+	width: 24px;
+	bottom: 4px;
+	left: 644px; 
+	position:absolute;
+	visibility:hidden;
+	background-image: url('../images/thumbs_up.png');
+}
+
+/* gift button */
+
+.giftButton {
+color: #000000;
+font-family: Verdana,Arial;
+font-size: 9px;
+font-style: normal;
+font-weight: bold;
+text-decoration: none;
+text-align: center;
+height: 24px;
+width: 24px;
+bottom: 4px;
+left: 712px;
+position: absolute;
+background-image: url('../images/star.png');
+}
+
+/* speaker button */
+
+.speakerButton 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 70px; 
+	width: 48px;
+	top: 285px;
+	left: 232px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/npc/ulu_bilge.png');
+}
+
+/* mail button */
+
+.mailButton 
+{
+	color: #000000;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 24px; 
+	width: 23px;
+	bottom: 3px;
+	left: 78px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/email.png');
+}
+
+/* sendmail button */
+
+.sendmailButton 
+{
+	color: #000000;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 31px; 
+	width: 24px;
+	bottom: -2px;
+	left: 45px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/sendmail.png');
+}
+
+/* friends button */
+
+.friendsButton 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 24px; 
+	width: 24px;
+	bottom: 3px;
+	left: 15px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/group.png');
+}
+
+.friendsButton:hover {
+background-image: url('../images/group1.png');
+}
+
+.blockButton:hover {
+background-image: url('../images/block1.png');
+}
+
+/* smiley button */
+
+.smileyButton {
+color: #0099CC;
+font-family: Verdana,Arial;
+font-size: 18px;
+font-style: normal;
+font-weight: bold;
+text-decoration: none;
+text-align: center;
+height: 27px;
+width: 57px;
+bottom: 4px;
+left: 189px;
+position: absolute;
+cursor: pointer;
+background-image: url('../images/vips.png');
+}
+
+
+.canta{background:url('../images/canta_bg.png');
+visibility:hidden;
+position:absolute;
+width:165px;
+height:221px;
+margin-left:116px;
+margin-top:-104px;}
+
+
+.cantaiframe{border:0px;
+width:161px;
+height:193px;
+margin-left:2px;}
+
+.avatarSmiley{top:138px;
+left:2px;
+border:5px solid #a84807;
+background:rgb(255,246,221);
+position:absolute;
+height:205px;
+width:238px;padding:4px;
+visibility:hidden;
+z-index:31001;
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+border-bottom:0px;}
+
+/* myplace button */
+
+.myplaceButton 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 24px; 
+	width: 24px;
+	bottom: 36px;
+	left: 778px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/myplace.png');
+}
+
+/* tower button */
+
+.towerButton 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	text-align: center;
+	height: 24px; 
+	width: 32px;
+	bottom: 3px;
+	left: 174px; 
+	position:absolute;
+	cursor:pointer;
+	background-image: url('../images/tower.png');
+}
+
+/* myplace window */
+
+.myplace 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+	height: 330px; 
+	width: 305px;
+	bottom: 50px;
+	left:417px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	overflow-y: hidden;
+	overflow-x: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* my friends window */
+
+.myfriends 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+	height: 100px; 
+	width: 200px;
+	bottom: 57px;
+	left:5px; 
+	border: 1px solid #000000; 
+	background-image: url('../images/friendsbg.png');
+	background:#F3F3F3;
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	overflow: scroll;
+	overflow-x: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+
+/* blocked users window */
+
+.blocklist 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+	height: 100px; 
+	width: 200px;
+	bottom: 33px;
+	left:160px; 
+	border: 1px solid #000000; 
+	background-image: url('../images/blockbg.png');
+	background:#F3F3F3;
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	overflow: scroll;
+	overflow-x: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* sendmail window */
+
+.sendmail 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+	height: 150px; 
+	width: 200px;
+	bottom: 58px;
+	left:5px; 
+	border: 1px solid #000000; 
+	background-image: url('../images/chatboxbg.png');
+	background:#F3F3F3;
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	overflow: hidden;
+	overflow-x: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+.send_to 
+{
+	height: 20px; 
+	width: 130px;
+}
+
+.send_mail_mess 
+{
+	height: 95px; 
+	width: 200px;
+}
+
+.mysendButton 
+{
+	height: 20px; 
+	width: 200px;
+}
+
+/* my inbox window */
+
+.myinbox 
+{
+	color: #000000;
+	font-family: Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+	height: 150px; 
+	width: 200px;
+	top: 300px;
+	left:5px; 
+	border: 1px solid #000000; 
+	background-image: url('../images/mailbg.png');
+	background:#F3F3F3;
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	overflow: scroll;
+	overflow-x: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* my rooms window */
+
+.myrooms 
+{
+	top: 45px;
+	left: 67px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* upgrade VIP window */
+
+.upgradeVIP 
+{
+	top: 120px;
+	left: 200px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/vippnl.png');
+	position:absolute;
+	height: 340px; 
+	width: 400px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* gotoUsers window */
+
+.gotoUsers 
+{
+	top: 140px;
+	left: 170px; 
+	border: 1px solid #000000; 
+	background-image: url('../images/chatboxbg.png');
+    background:#F3F3F3;
+	position:absolute;
+	height: 219px; 
+	width: 483px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+
+/* avatar creator window */
+
+.avatarCreator 
+{
+	top: 0px;
+	left: 50px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	height: 0px; 
+	width: 0px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* avatar interaction window */
+
+.avatarInteraction 
+{
+	top: 100px;
+	left: 130px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	height: 330px; 
+	width: 540px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* media window */
+
+.mediaDiv 
+{
+	top: 70px;
+	left: 100px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	height: 440px; 
+	width: 620px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	text-align:center;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* play games window */
+
+.playGames 
+{
+	top: 80px;
+	left: 39px; 
+	border: 1px solid #84B2DE; 
+	background-image: url('../images/chatboxbg.png');
+	position:absolute;
+	height: 429px; 
+	width: 723px; 
+	padding: 4px;
+	visibility: hidden;
+	z-index: 31001;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* my messages */
+
+.mymessages 
+{
+	border: 1px solid #84B2DE; 
+	background-color: #FFFFFF; 
+	padding: 4px;
+	word-wrap: break-word; 
+}
+
+/* login screen */
+
+.loginscreen 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	background-image: url('../templates/login/background.jpg');
+	position:absolute;
+	padding: 4px;
+	height: 600px; 
+	width: 810px; 
+}
+
+.loginbox 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	position:absolute;
+	padding: 4px;
+	top: 300px;
+	left: 220px;
+}
+
+/* registerbox */
+
+.regbox 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	position:absolute;
+	padding: 4px;
+	top: 300px;
+	left: 150px;
+}
+
+/* lost passwordbox */
+
+.lostpassbox 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	position:absolute;
+	padding: 4px;
+	top: 300px;
+	left: 150px;
+}
+
+/* splash page (on first login) */
+
+.splashpage 
+{
+	background-image: url('../images/splash.png');
+	position:absolute;
+	top: 150px;
+	left: 200px;
+	height: 300px; 
+	width: 404px; 
+	visibility: hidden;
+	z-index:31001;
+}
+
+/* system messages window */
+
+.sysmess 
+{
+	color: #333;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none; 
+	width: 231px; 	
+	height: 17px;
+	top: 443px;
+	left: 549px;
+	border: 1px solid #ff0000; 
+	background-image: url('../images/chatboxbg.png');
+	background-color: #F8F8F8;
+	position:absolute;
+	padding: 4px;
+	visibility: hidden;
+	z-index:30000;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+
+/* medium text */
+
+.mediumtext 
+{
+	color: #FFFFFF;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 16px;
+	font-style: normal;
+	text-decoration: none;
+}
+
+/* small text */
+
+.smalltext 
+{
+	color: #FFFFFF;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 12px;
+	font-style: normal;
+	text-decoration: none;
+}
+
+
+/** info Box **/
+
+.infobox 
+{
+	color: #0099CC;
+	font-family: Comic Sans MS, Verdana, Arial;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bold;
+	text-decoration: none;
+	position:absolute;
+	top: 120px;
+	left: 456px;
+}
+
+/** input **/
+
+.input
+{
+	width: 160px;
+	height: 23px;
+	border: 2px solid #EEEEEE;
+	background-color: #CCCCCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+
+}
+
+/* cursor posistion */
+
+.startPosistion 
+{
+	position:absolute;
+	padding: 10px;
+	top: 10px;
+	left: 355px;
+	height: 16px; 
+	width: 90px; 
+	background-image: url('../images/chatboxbg.png');
+	z-index:30000;
+	visibility: hidden;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+/* door */
+
+.door 
+{
+	position:absolute;
+	cursor:pointer;
+	background-repeat:no-repeat;
+	background-position:center center;
+	background-image: url('../images/changeroom.png');
+}
+
+.link A:link {text-decoration: none; color: #006699;}
+.link A:visited {text-decoration: none; color: #006699;}
+.link A:active {text-decoration: none; color: #006699;}
+.link A:hover {text-decoration: underline; color: #006699;}
+
+
+.span
+{
+	position:absolute;
+	top:15px;
+	left:0px;
+}
+
+.spanMini
+{
+	position:absolute;
+	top:-2px;
+	horizontal-align:middle;
+}

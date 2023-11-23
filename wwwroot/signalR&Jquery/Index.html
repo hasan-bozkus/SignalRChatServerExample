@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="~/signalR&Jquery/signalr.min.js"></script>
+    <script src="~/signalR&Jquery/jquery.min.js"></script>
+    <script src="~/signalR&Jquery/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(() => {
+
+        
+                const connction = new signalR.HubConnectionBuilder()
+                    .withUrl("http://localhost:48643/chathub")
+                    .build();
+
+            connection.start();
+
+            $(".disabled".attr("disabled", "disabled"));
+
+            $(".users").click(function () {
+                $(".users").each((index, item) => {
+                    item.classList.remove("active");
+                });
+                $(this).addClass("active");
+            });
+
+            $("#btnGonder").click(() => {
+                var x = $(".message").clone();
+                x.removeClass("message");
+                x.find("h5")[1].innerHTML = ""; //Ahmet'i gösterir.
+                x.find("h5")[0].innerHTML = ""; //Sen'i gösterir.
+                $(".message").append(x);
+            })
+
+            $("#btnGirisYap").click(() => {
+                const nickName = $("#txtNickName").val();
+                connection.invoke("GetNickName", nickName).catch(error => console.log(error));
+            });
+
+            connection.on("clientJoined", nickName => {
+                $("#clientDurumMesajlari").html(`${nickName} Giriş Yaptı`)
+                $("#clientDurumMesajlari").fadeIn(2000, () => {
+                    setTimeout(() => {
+                        $("#clientDurumMesajlari").fadeOut(2000);
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="~/style/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/style/style.css" />
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <div class="row">
+                <!--Sol Menü-->
+                <div class="col-md-3">
+                    <!--Oda-->
+                    <input class="form-control form-control-lg disabled" type="text" placeholder="Oda adı" />
+                    <button type="button" class="btn btn-info rightButton disabled">Oda Oluştur</button>
+                    <select size="5" style="width:100%;" class="form-select disabled" multiple>
+                        <option selected value="-1">Odalar</option>
+                    </select>
+                    <button type="button" class="btn btn-primary rightButton disabled">Seçili Odalara Gir</button>
+                    <!--Oda-->
+                    <br /><br /><br />
+                    <!--Clientlar-->
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action users active">
+                            Tümü
+                        </a>
+                        <a class="list-group-item list-group-item-action users" aria-current="true">
+                            Cras justo oido
+                        </a>
+                    </div>
+                    <!--Clientlar-->
+                </div>
+                <div class="col-md-6">
+
+                    <div class="alert alert-success" id="clientDurumMesajlari" style="display:none;">
+                        A Simple success alret yeri 
+                    </div>
+
+                    <!--Mesajlaşma-->
+                    <textarea class="form-control" style="margin-top:5px;" placeholder="İletilecek mesajı buruya giriniz." rows="3"></textarea>
+
+                    <button type="button" class="btn btn-light rightButton" id="btnGonder">Gönder</button>
+
+                    <br /><br /><br />
+
+                    <div class="list-group">
+                        <a class="list-group-item list-group-item-action" aria-current="true">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Ahmet</h5>
+                                <h5 class="mb-2">Sen</h5>
+                            </div>
+                            <p class="mb-1">Donec id elit non mi porta gravide at eget metus. Maecenas sed diam eget rius<small>Donec id elit non mi porta.</small></p>
+                        </a>
+                    </div>
+                    <!--Mesajlaşma-->
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control form-control-lg" type="text" placeholder="Adınız/Nick" id="txtNickName" />
+                    <button type="button" class="btn btn-success leftButton" id="btnGirisYap">Giriş Yap</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</body>
+</html>
