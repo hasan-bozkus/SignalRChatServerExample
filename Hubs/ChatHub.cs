@@ -75,9 +75,19 @@ namespace SignalRChatServerExample.Hubs
 
         public async Task GetClientToGroup(string groupName)
         {
+            //if(groupName == "-1")
+            //{
+            //    await Clients.Caller.SendAsync("clients", ClientSource.Clients);
+            //}
+
             Group group = GroupSource.Groups.FirstOrDefault(g => g.GroupName == groupName);
 
-            await Clients.Caller.SendAsync("clients", group.Clients);
+            await Clients.Caller.SendAsync("clients", groupName == "-1" ? ClientSource.Clients : group.Clients);
+        }
+
+        public async Task SendMessageToGroupAsync(string groupName, string message)
+        {
+            await Clients.OthersInGroup(groupName).SendAsync("receiveMessage", message, ClientSource.Clients.FirstOrDefault(c => c.ConnectionId == Context.ConnectionId).NickName);
         }
     }
 }
